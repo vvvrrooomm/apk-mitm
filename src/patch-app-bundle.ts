@@ -77,7 +77,7 @@ function patchAppBundle(options: TaskOptions, { isXapk }: { isXapk: boolean }) {
       title: 'Compressing APKs',
       task: () => zip(bundleDir, outputPath),
     },
-  ])
+  ], {})
 }
 
 function getXapkBaseName(manifest: any) {
