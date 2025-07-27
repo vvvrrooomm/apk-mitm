@@ -12,8 +12,13 @@ export default async function getJavaVersion() {
     }
 
     return parseInt(majorVersionString)
-  } catch (error) {
-    if (error.code === 'ENOENT')
+  } catch (error: unknown) {
+    if (
+      error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      (error as any).code === 'ENOENT'
+    )
       throw new UserError(
         'No "java" executable could be found!' +
           ' Make sure that Java is installed and available in your PATH.',
